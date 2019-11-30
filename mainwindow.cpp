@@ -25,7 +25,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->treeView->setExpanded(file_system_model->index(ROOT_PATH), true);
 
-    ui->textBrowser->setLineWrapMode(QTextEdit::NoWrap);
+    ui->textEdit->setLineWrapMode(QTextEdit::NoWrap);
 
     connect(ui->findButton, &QPushButton::clicked, this, [this] {
         cancel = true;
@@ -35,7 +35,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
         QString path = ui->dirLineEdit->text();
         QString substr = ui->substrLineEdit->text();
-        ui->textBrowser->clear();
+        ui->textEdit->clear();
         QFileInfo const path_info(path);
 
         if (path_info.isDir()) {
@@ -56,7 +56,7 @@ MainWindow::MainWindow(QWidget *parent) :
         ui->progressBar->setValue(files_cnt);
         std::unique_lock<std::mutex> lg(res_m);
         for (auto str : result) {
-            ui->textBrowser->insertHtml(str);
+            ui->textEdit->append(str);
         }
         result.clear();
     });

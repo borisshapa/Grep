@@ -82,7 +82,7 @@ void grep_task_t::grep_file() const {
                         file_result.push_back("<font color=\"purple\">"
                                      + path + "</font><font color=\"red\">:</font>"
                                      + QString::number(lines_cnt) + " "
-                                     + res + "<br>");
+                                     + res);
                     }
                 }
                 pos++;
